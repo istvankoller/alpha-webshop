@@ -26,6 +26,8 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
       { path: 'my/orders', component: MyOrdersComponent },
       { path: 'login', component: LoginComponent },
       { path: 'admin/products', component: AdminProductsComponent },
+      { path: 'admin/products/new', component: ProductFormComponent },
       { path: 'admin/orders', component: AdminOrdersComponent },
     ]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -63,7 +67,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [ScreenTrackingService, UserTrackingService],
+  providers: [ScreenTrackingService, UserTrackingService, CategoryService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
