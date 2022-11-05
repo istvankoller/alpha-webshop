@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "alpha-webshop"
+  },
+  "targets": {
+    "alpha-webshop": {
+      "hosting": {
+        "alpha-webshop": [
+          "alpha-webshop"
+        ]
+      }
+    }
+  }
+}
