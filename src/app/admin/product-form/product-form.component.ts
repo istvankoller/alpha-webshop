@@ -3,6 +3,7 @@ import { CategoryService } from '../../services/category.service';
 import { NgForm } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
+import { get } from 'src/app/services/firebase-operations';
 
 @Component({
   selector: 'app-product-form',
@@ -25,4 +26,8 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  gettest() {
+    get('gSAk2tJLkJ6E12G3gkJJ');
+  }
 }

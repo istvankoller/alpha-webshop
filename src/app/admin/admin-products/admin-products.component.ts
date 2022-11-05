@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-products',
@@ -7,10 +8,15 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./admin-products.component.scss'],
 })
 export class AdminProductsComponent implements OnInit {
+  editedProduct = {};
   products$;
   constructor(private productService: ProductService) {
     this.products$ = this.productService.getAll();
   }
 
   ngOnInit(): void {}
+
+  saveEditedProduct(p: {}) {
+    this.editedProduct = p;
+  }
 }

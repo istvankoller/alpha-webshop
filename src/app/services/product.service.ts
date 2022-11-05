@@ -4,6 +4,7 @@ import {
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { db } from './firebase-operations';
 
 interface Product {
   title: string;
@@ -23,6 +24,7 @@ export class ProductService {
     this.itemsCollection = db.collection<Product>('products');
     this.products = this.itemsCollection.valueChanges({ idField: 'customID' });
   }
+
   create(product: any) {
     // Persist a document id
     const id = this.db.createId();
@@ -32,6 +34,7 @@ export class ProductService {
   }
 
   getAll() {
+    console.log(this.products);
     return this.products;
   }
 }
