@@ -10,6 +10,7 @@ interface Product {
   price: number;
   category: string;
   imgUrl: string;
+  id: string;
 }
 
 @Injectable({
@@ -26,6 +27,11 @@ export class ProductService {
     // Persist a document id
     const id = this.db.createId();
     const details: Product = product;
+    details.id = id;
     this.itemsCollection.doc(id).set(details);
+  }
+
+  getAll() {
+    return this.products;
   }
 }
