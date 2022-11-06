@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { NgForm } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { get } from 'src/app/services/firebase-operations';
 
 @Component({
@@ -12,12 +12,21 @@ import { get } from 'src/app/services/firebase-operations';
 })
 export class ProductFormComponent implements OnInit {
   categories$;
+  product: any = {};
+
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private categoryService: CategoryService,
     private productService: ProductService
   ) {
     this.categories$ = categoryService.getCategories();
+
+    let id = this.route.snapshot.paramMap.get('id');
+    if (id)
+      this.productService.get(id).then((data) => {
+        this.product = data;
+      });
   }
 
   save(product: NgForm) {
@@ -26,8 +35,4 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  gettest() {
-    get('gSAk2tJLkJ6E12G3gkJJ');
-  }
 }

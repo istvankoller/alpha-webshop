@@ -4,6 +4,7 @@ import {
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { getProductById } from './firebase-operations';
 
 interface Product {
   title: string;
@@ -34,5 +35,9 @@ export class ProductService {
 
   getAll() {
     return this.products;
+  }
+
+  get(productId: any) {
+    return getProductById(productId);
   }
 }

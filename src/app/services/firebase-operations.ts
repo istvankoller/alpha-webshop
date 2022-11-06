@@ -57,10 +57,8 @@ export async function saveNewUser(user: any) {
   }
 }
 
-// export async function getIsAdmin(id: string) {
-//   let data: any;
-//   const q = query(collection(db, 'users'), where('id', '==', id));
-//   const querySnapshot = await getDocs(q);
-//   querySnapshot.forEach((doc) => (data = doc.data()));
-//   return data.isAdmin == true ? true : false;
-// }
+export async function getProductById(productId: any) {
+  const docRef = doc(db, 'products', productId);
+  const docSnap = await getDoc(docRef);
+  return docSnap.data();
+}
