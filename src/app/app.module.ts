@@ -30,6 +30,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { ProductService } from './services/product.service';
     UserTrackingService,
     CategoryService,
     ProductService,
+    AuthService,
   ],
   bootstrap: [AppComponent],
 })

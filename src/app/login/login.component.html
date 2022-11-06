@@ -3,7 +3,7 @@
   <button (click)="logout()">Logout</button>
 </div> -->
 <!-- <ng-template #showLogin> -->
-<h1 *ngIf="auth.user | async as user; else showLogin">
+<h1 *ngIf="user$ | async as user; else showLogin">
   Hello {{ user.displayName }}!
 </h1>
 <button (click)="login()">Login with Google</button>
