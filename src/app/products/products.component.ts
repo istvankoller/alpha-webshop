@@ -19,7 +19,7 @@ export class ProductsComponent {
     productService: ProductService,
     categoryService: CategoryService
   ) {
-    this.products = productService.getAll().subscribe((products) => {
+    productService.getAll().subscribe((products) => {
       this.products = products;
 
       route.queryParamMap.subscribe((params) => {
