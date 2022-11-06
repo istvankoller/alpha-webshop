@@ -81,12 +81,12 @@ import { AdminAuthGuard } from './services/admin-auth-guard.service';
       {
         path: 'admin/products',
         component: AdminProductsComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, AdminAuthGuard],
       },
       {
         path: 'admin/orders',
         component: AdminOrdersComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, AdminAuthGuard],
       },
     ]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),

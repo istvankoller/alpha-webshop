@@ -25,6 +25,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore();
+export let isAdmine: boolean = false;
 
 export async function get(productId: string) {
   const docRef = doc(db, 'products', productId);
@@ -33,7 +34,7 @@ export async function get(productId: string) {
 }
 
 async function getUserById(id: string) {
-  let data;
+  let data: any;
   const q = query(collection(db, 'users'), where('id', '==', id));
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => (data = doc.data()));
@@ -42,6 +43,7 @@ async function getUserById(id: string) {
 
 export async function saveNewUser(user: any) {
   let userData = await getUserById(user.uid);
+  isAdmine = userData.isAdmin == true ? true : false;
   if (userData == undefined) {
     let userwithId = {
       id: user.uid,
@@ -50,4 +52,12 @@ export async function saveNewUser(user: any) {
     };
     await addDoc(collection(db, 'users'), userwithId);
   }
+}
+
+export async function getIsAdmin(id: string) {
+  let data: any;
+  const q = query(collection(db, 'users'), where('id', '==', id));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => (data = doc.data()));
+  return data.isAdmin == true ? true : false;
 }

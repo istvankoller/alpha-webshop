@@ -33,7 +33,6 @@ export class ProductService {
   }
 
   getAll() {
-    console.log(this.products);
     return this.products;
   }
 }

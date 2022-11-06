@@ -7,6 +7,8 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { getIsAdmin } from './firebase-operations';
+import { isAdmine } from './firebase-operations';
 
 @Injectable({
   providedIn: 'root',
@@ -14,5 +16,7 @@ import { AuthService } from './auth.service';
 export class AdminAuthGuard implements CanActivate {
   constructor(private auth: AuthService) {}
 
-  canActivate() {}
+  canActivate(): boolean {
+    return isAdmine == true ? true : false;
+  }
 }
