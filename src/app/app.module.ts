@@ -31,6 +31,7 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,11 @@ import { AuthService } from './services/auth.service';
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'check-out', component: CheckOutComponent },
+      {
+        path: 'check-out',
+        component: CheckOutComponent,
+        canActivate: [AuthGuard],
+      },
       { path: 'order-success', component: OrderSuccessComponent },
       { path: 'my/orders', component: MyOrdersComponent },
       { path: 'login', component: LoginComponent },
@@ -78,6 +83,7 @@ import { AuthService } from './services/auth.service';
     CategoryService,
     ProductService,
     AuthService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent],
 })
