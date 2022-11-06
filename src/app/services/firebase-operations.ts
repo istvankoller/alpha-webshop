@@ -62,3 +62,8 @@ export async function getProductById(productId: any) {
   const docSnap = await getDoc(docRef);
   return docSnap.data();
 }
+
+export async function updateProduct(productId: string, product: {}) {
+  const productRef = doc(db, 'products', productId);
+  await updateDoc(productRef, product);
+}

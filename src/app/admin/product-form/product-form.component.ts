@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { get } from 'src/app/services/firebase-operations';
+import { updateProduct } from 'src/app/services/firebase-operations';
 
 @Component({
   selector: 'app-product-form',
@@ -13,6 +14,7 @@ import { get } from 'src/app/services/firebase-operations';
 export class ProductFormComponent implements OnInit {
   categories$;
   product: any = {};
+  id;
 
   constructor(
     private router: Router,
@@ -22,15 +24,19 @@ export class ProductFormComponent implements OnInit {
   ) {
     this.categories$ = categoryService.getCategories();
 
-    let id = this.route.snapshot.paramMap.get('id');
-    if (id)
-      this.productService.get(id).then((data) => {
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id)
+      this.productService.get(this.id).then((data) => {
         this.product = data;
       });
   }
 
   save(product: NgForm) {
-    this.productService.create(product);
+    if (this.id) {
+      updateProduct(this.id, product);
+    } else {
+      this.productService.create(product);
+    }
     this.router.navigate(['/admin/products']);
   }
 
