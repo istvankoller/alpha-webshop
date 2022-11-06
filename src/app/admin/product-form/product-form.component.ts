@@ -4,7 +4,10 @@ import { NgForm } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { get } from 'src/app/services/firebase-operations';
-import { updateProduct } from 'src/app/services/firebase-operations';
+import {
+  updateProduct,
+  deleteProduct,
+} from 'src/app/services/firebase-operations';
 
 @Component({
   selector: 'app-product-form',
@@ -37,6 +40,12 @@ export class ProductFormComponent implements OnInit {
     } else {
       this.productService.create(product);
     }
+    this.router.navigate(['/admin/products']);
+  }
+
+  deleteProduct() {
+    if (!confirm('Are you sure you want to delete this product?')) return;
+    deleteProduct(this.id);
     this.router.navigate(['/admin/products']);
   }
 

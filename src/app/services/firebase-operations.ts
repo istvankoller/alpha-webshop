@@ -4,6 +4,7 @@ import { initializeApp } from 'firebase/app';
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -66,4 +67,8 @@ export async function getProductById(productId: any) {
 export async function updateProduct(productId: string, product: {}) {
   const productRef = doc(db, 'products', productId);
   await updateDoc(productRef, product);
+}
+
+export async function deleteProduct(productId: any) {
+  await deleteDoc(doc(db, 'products', productId));
 }
