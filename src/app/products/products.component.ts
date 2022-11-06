@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../services/category.service';
 import { ProductService } from '../services/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -8,9 +10,20 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductsComponent {
   products$;
+  categories$;
+  category: any;
 
-  constructor(productService: ProductService) {
+  constructor(
+    route: ActivatedRoute,
+    productService: ProductService,
+    categoryService: CategoryService
+  ) {
     this.products$ = productService.getAll();
+    this.categories$ = categoryService.getCategories();
+
+    route.queryParamMap.subscribe((params) => {
+      this.category = params.get('category');
+    });
   }
 
   ngOnInit(): void {}
