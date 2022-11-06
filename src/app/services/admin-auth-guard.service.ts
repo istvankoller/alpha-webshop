@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { getIsAdmin } from './firebase-operations';
-import { isAdmine } from './firebase-operations';
+import { userData } from './firebase-operations';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +17,6 @@ export class AdminAuthGuard implements CanActivate {
   constructor(private auth: AuthService) {}
 
   canActivate(): boolean {
-    return isAdmine == true ? true : false;
+    return userData.isAdmin == true ? true : false;
   }
 }

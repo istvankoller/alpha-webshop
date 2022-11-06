@@ -25,7 +25,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore();
-export let isAdmine: boolean = false;
+export let userData: any;
 
 export async function get(productId: string) {
   const docRef = doc(db, 'products', productId);
@@ -42,8 +42,7 @@ async function getUserById(id: string) {
 }
 
 export async function saveNewUser(user: any) {
-  let userData = await getUserById(user.uid);
-  isAdmine = userData.isAdmin == true ? true : false;
+  userData = await getUserById(user.uid);
   if (userData == undefined) {
     let userwithId = {
       id: user.uid,
