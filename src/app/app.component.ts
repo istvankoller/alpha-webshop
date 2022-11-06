@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { saveNewUser } from './services/firebase-operations';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent {
   ) {
     auth.user$.subscribe((user) => {
       if (user) {
+        saveNewUser(user);
         let returnUrl: any = localStorage.getItem('returnUrl');
         router.navigateByUrl(returnUrl);
       }

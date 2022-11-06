@@ -1,5 +1,16 @@
+import { UserTrackingService } from '@angular/fire/analytics';
 import { initializeApp } from 'firebase/app';
-import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   projectId: 'alpha-webshop',
@@ -19,4 +30,24 @@ export async function get(productId: string) {
   const docRef = doc(db, 'products', productId);
   const docSnap = await getDoc(docRef);
   console.log(docSnap.data());
+}
+
+async function getUserById(id: string) {
+  let data;
+  const q = query(collection(db, 'users'), where('id', '==', id));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => (data = doc.data()));
+  return data;
+}
+
+export async function saveNewUser(user: any) {
+  let userData = await getUserById(user.uid);
+  if (userData == undefined) {
+    let userwithId = {
+      id: user.uid,
+      name: user.displayName,
+      email: user.email,
+    };
+    await addDoc(collection(db, 'users'), userwithId);
+  }
 }
