@@ -7,7 +7,6 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
-import { getIsAdmin } from './firebase-operations';
 import { userData } from './firebase-operations';
 
 @Injectable({
