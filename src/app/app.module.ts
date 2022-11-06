@@ -57,7 +57,7 @@ import { AdminAuthGuard } from './services/admin-auth-guard.service';
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       {
