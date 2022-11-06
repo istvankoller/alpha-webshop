@@ -11,10 +11,7 @@ import { getAuth } from '@angular/fire/auth';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  user$: Observable<firebase.User | null>;
-  constructor(private auth: AuthService) {
-    this.user$ = this.auth.login();
-  }
+  constructor(public auth: AuthService) {}
 
   ngOnInit(): void {}
 
