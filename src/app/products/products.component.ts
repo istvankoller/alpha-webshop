@@ -9,7 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent {
-  products$;
+  products: any = [];
+  filteredProducts: any = [];
   categories$;
   category: any;
 
@@ -18,12 +19,17 @@ export class ProductsComponent {
     productService: ProductService,
     categoryService: CategoryService
   ) {
-    this.products$ = productService.getAll();
-    this.categories$ = categoryService.getCategories();
+    this.products = productService.getAll().subscribe((products) => {
+      this.products = products;
 
-    route.queryParamMap.subscribe((params) => {
-      this.category = params.get('category');
+      route.queryParamMap.subscribe((params) => {
+        this.category = params.get('category');
+        this.filteredProducts = this.category
+          ? this.products.filter((p: any) => p.category === this.category)
+          : this.products;
+      });
     });
+    this.categories$ = categoryService.getCategories();
   }
 
   ngOnInit(): void {}
