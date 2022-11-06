@@ -14,9 +14,9 @@ export class AdminProductsComponent implements OnInit {
     this.products$ = this.productService.getAll();
   }
 
-  ngOnInit(): void {}
-
-  saveEditedProduct(p: {}) {
-    this.editedProduct = p;
+  filter(query: any) {
+    console.log(query.target.value);
   }
+
+  ngOnInit(): void {}
 }

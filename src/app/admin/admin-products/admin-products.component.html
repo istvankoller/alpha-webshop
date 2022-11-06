@@ -1,6 +1,14 @@
 <p>
   <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
 </p>
+<p>
+  <input
+    (keyup)="filter($event)"
+    type="text"
+    class="form-control"
+    placeholder="Search..."
+  />
+</p>
 <table class="table">
   <thead>
     <tr>
@@ -14,11 +22,7 @@
       <td>{{ p.title }}</td>
       <td>{{ p.price }}</td>
       <td>
-        <a
-          [routerLink]="['/admin/products/', p.id]"
-          (click)="saveEditedProduct(p)"
-          >Edit</a
-        >
+        <a [routerLink]="['/admin/products/', p.id]">Edit</a>
       </td>
     </tr>
   </tbody>
