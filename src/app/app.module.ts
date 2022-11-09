@@ -35,6 +35,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './services/shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     AuthService,
     AuthGuard,
     AdminAuthGuard,
+    ShoppingCartService,
   ],
   bootstrap: [AppComponent],
 })
