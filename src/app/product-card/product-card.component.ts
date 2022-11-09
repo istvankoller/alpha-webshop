@@ -9,6 +9,8 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 export class ProductCardComponent {
   @Input('product') product: any;
   @Input('show-actions') showActions = true;
+  @Input('shopping-cart') shoppingCart: any;
+
   constructor(private CartService: ShoppingCartService) {}
 
   addToCart(product: any) {
