@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../services/category.service';
 import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,14 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductsComponent {
   products: any = [];
   filteredProducts: any = [];
-  categories$;
+
   category: any;
 
-  constructor(
-    route: ActivatedRoute,
-    productService: ProductService,
-    categoryService: CategoryService
-  ) {
+  constructor(route: ActivatedRoute, productService: ProductService) {
     productService.getAll().subscribe((products) => {
       this.products = products;
 
@@ -29,7 +24,6 @@ export class ProductsComponent {
           : this.products;
       });
     });
-    this.categories$ = categoryService.getCategories();
   }
 
   ngOnInit(): void {}
