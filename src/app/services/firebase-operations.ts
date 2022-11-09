@@ -82,3 +82,32 @@ export async function createCartId() {
   });
   return docRef.id;
 }
+
+export async function addProductToCart(product: any) {
+  let id: string = product.id;
+  let cart: any = '';
+  let cartId: any = localStorage.getItem('cartId');
+  const docRef = doc(db, 'shopping-carts', cartId);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    cart = docSnap.data();
+  } else {
+    console.log('No such document!');
+  }
+  let findProduct = false;
+  for (const p in cart) {
+    if (p === id) {
+      let plusOne: any = new Object();
+      let newQuantity = cart[id] + 1;
+      plusOne[p] = newQuantity;
+      await updateDoc(docRef, plusOne);
+      findProduct = true;
+    }
+  }
+  if (!findProduct) {
+    let newProduct: any = new Object();
+    newProduct[id] = 1;
+    await updateDoc(docRef, newProduct);
+  }
+}

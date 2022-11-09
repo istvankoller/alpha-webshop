@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { createCartId } from './firebase-operations';
+import { createCartId, addProductToCart } from './firebase-operations';
 
 @Injectable({
   providedIn: 'root',
@@ -7,15 +7,16 @@ import { createCartId } from './firebase-operations';
 export class ShoppingCartService {
   constructor() {}
 
-  private getOrCreateCart(): any {
+  private async getOrCreateCart(): Promise<any> {
     let cartId = localStorage.getItem('cartId');
-    if (!cartId) {
-      createCartId().then((data) => {
-        localStorage.setItem('cartId', data);
-        return data;
-      });
-    } else {
-      return localStorage.getItem('cartId');
-    }
+    if (cartId) return cartId;
+    let result = await createCartId();
+    localStorage.setItem('cartId', result);
+    return result;
+  }
+
+  async addToCart(product: any) {
+    let cartId = await this.getOrCreateCart();
+    addProductToCart(product);
   }
 }
