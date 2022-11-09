@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { createCartId } from '../services/firebase-operations';
 
 @Component({
   selector: 'product-card',
@@ -9,4 +10,12 @@ export class ProductCardComponent {
   @Input('product') product: any;
   @Input('show-actions') showActions = true;
   constructor() {}
+
+  addToCart(product: any) {
+    let cartId = localStorage.getItem('cartId');
+    if (!cartId) {
+      createCartId().then((data) => localStorage.setItem('cartId', data));
+    } else {
+    }
+  }
 }

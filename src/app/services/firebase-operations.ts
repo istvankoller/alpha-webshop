@@ -10,9 +10,12 @@ import {
   getDocs,
   getFirestore,
   query,
+  setDoc,
+  Timestamp,
   updateDoc,
   where,
 } from 'firebase/firestore';
+import { timestamp } from 'rxjs';
 
 const firebaseConfig = {
   projectId: 'alpha-webshop',
@@ -71,4 +74,11 @@ export async function updateProduct(productId: string, product: {}) {
 
 export async function deleteProduct(productId: any) {
   await deleteDoc(doc(db, 'products', productId));
+}
+
+export async function createCartId() {
+  const docRef = await addDoc(collection(db, 'shopping-carts'), {
+    dateCreated: Timestamp.fromDate(new Date()),
+  });
+  return docRef.id;
 }
