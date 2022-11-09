@@ -11,12 +11,7 @@ export class ProductCardComponent {
   @Input('show-actions') showActions = true;
   constructor(private CartService: ShoppingCartService) {}
 
-  public product2: {} = {
-    id: 'd7Ibbmxxhntgtmrb2kwA',
-    title: 'CPU',
-  };
-
-  addToCart(product2: any) {
-    this.CartService.addToCart(product2);
+  addToCart(product: any) {
+    this.CartService.addToCart(product);
   }
 }
