@@ -16,4 +16,6 @@ export class ProductCardComponent {
   addToCart(product: any) {
     this.CartService.addToCart(product);
   }
+
+  getQuantity() {}
 }

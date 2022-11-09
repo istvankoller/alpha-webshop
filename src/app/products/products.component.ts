@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { ShoppingCartService } from '../services/shopping-cart.service';
+import { getLocaleExtraDayPeriods } from '@angular/common';
 
 @Component({
   selector: 'app-products',
@@ -12,8 +14,13 @@ export class ProductsComponent {
   filteredProducts: any = [];
 
   category: any;
+  cart: any;
 
-  constructor(route: ActivatedRoute, productService: ProductService) {
+  constructor(
+    route: ActivatedRoute,
+    productService: ProductService,
+    shoppingCarts: ShoppingCartService
+  ) {
     productService.getAll().subscribe((products) => {
       this.products = products;
 
@@ -26,5 +33,5 @@ export class ProductsComponent {
     });
   }
 
-  ngOnInit(): void {}
+  async ngOnInit() {}
 }

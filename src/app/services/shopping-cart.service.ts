@@ -16,6 +16,7 @@ export class ShoppingCartService {
   }
 
   async addToCart(product: any) {
-    addProductToCart(product);
+    let cartId = await this.getOrCreateCart();
+    addProductToCart(product, cartId);
   }
 }

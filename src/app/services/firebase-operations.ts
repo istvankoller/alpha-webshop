@@ -83,10 +83,9 @@ export async function createCartId() {
   return docRef.id;
 }
 
-export async function addProductToCart(product: any) {
+export async function addProductToCart(product: any, cartId: any) {
   let id: string = product.id;
   let cart: any = '';
-  let cartId: any = localStorage.getItem('cartId');
   const docRef = doc(db, 'shopping-carts', cartId);
   const docSnap = await getDoc(docRef);
 
@@ -111,3 +110,12 @@ export async function addProductToCart(product: any) {
     await updateDoc(docRef, newProduct);
   }
 }
+
+export async function getCart() {
+  const querySnapshot = await getDocs(collection(db, 'shoppint-carts'));
+  querySnapshot.forEach((doc) => {
+    console.log(`${doc.id} => ${doc.data()}`);
+  });
+}
+
+getCart();
