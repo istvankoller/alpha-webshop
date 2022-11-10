@@ -32,7 +32,11 @@ export class ProductsComponent {
       });
     });
     shoppingCarts.getCart().then((data) => {
-      this.cart = data;
+      if (data) {
+        this.cart = data;
+      } else {
+        this.cart = {};
+      }
     });
   }
 }
