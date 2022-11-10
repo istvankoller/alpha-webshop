@@ -17,7 +17,19 @@ export class ProductCardComponent {
     this.CartService.addToCart(product);
   }
 
+  removeFromCart(product: any) {
+    this.CartService.removeFromCart(product);
+  }
+
   amountIncrease() {
     this.shoppingCart++;
+  }
+
+  amountDecrease() {
+    if (this.shoppingCart == 0) {
+      this.shoppingCart = 0;
+    } else {
+      this.shoppingCart--;
+    }
   }
 }

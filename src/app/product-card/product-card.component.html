@@ -14,13 +14,36 @@
   <div *ngIf="showActions" class="card-footer">
     <div class="d-grid gap-2">
       <button
+        *ngIf="shoppingCart == 0; else updateQuantity"
         (click)="addToCart(product)"
         (click)="amountIncrease()"
-        class="btn btn-primary"
+        class="btn btn-secondary"
       >
         Add to Cart
       </button>
-      <div>{{ shoppingCart }}</div>
+      <ng-template #updateQuantity>
+        <div class="row g-0">
+          <div class="col-2 d-grid gap-2">
+            <button
+              (click)="removeFromCart(product)"
+              (click)="amountDecrease()"
+              class="btn btn-secondary"
+            >
+              -
+            </button>
+          </div>
+          <div class="col text-center">{{ shoppingCart }} in cart</div>
+          <div class="col-2 d-grid gap-2">
+            <button
+              (click)="addToCart(product)"
+              (click)="amountIncrease()"
+              class="btn btn-secondary"
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>

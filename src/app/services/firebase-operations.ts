@@ -111,6 +111,29 @@ export async function addProductToCart(product: any, cartId: any) {
   }
 }
 
+export async function removeProductFromCart(product: any, cartId: any) {
+  let id: string = product.id;
+  let cart: any = '';
+  const docRef = doc(db, 'shopping-carts', cartId);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    cart = docSnap.data();
+  } else {
+    console.log('No such document!');
+  }
+  for (const p in cart) {
+    if (p === id) {
+      if (cart[id] > 0) {
+        let minusOne: any = new Object();
+        let newQuantity = cart[id] - 1;
+        minusOne[p] = newQuantity;
+        await updateDoc(docRef, minusOne);
+      }
+    }
+  }
+}
+
 export async function getCartsItems(): Promise<any> {
   let cartId = localStorage.getItem('cartId');
   if (cartId) {
