@@ -40,13 +40,4 @@ export class ProductsComponent {
       }
     });
   }
-  updateCart(): void {
-    getCartsItems().then((data) => {
-      if (data) {
-        this.cart = data;
-      } else {
-        this.cart = {};
-      }
-    });
-  }
 }

@@ -15,12 +15,12 @@
     <div class="d-grid gap-2">
       <button
         (click)="addToCart(product)"
-        (click)="btnClicked()"
+        (click)="amountIncrease()"
         class="btn btn-primary"
       >
         Add to Cart
       </button>
-      <div>{{ getQuantity() }}</div>
+      <div>{{ shoppingCart }}</div>
     </div>
   </div>
 </div>

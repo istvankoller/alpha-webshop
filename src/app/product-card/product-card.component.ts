@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
@@ -11,19 +11,13 @@ export class ProductCardComponent {
   @Input('show-actions') showActions = true;
   @Input('shopping-cart') shoppingCart: any;
 
-  @Output() clicked = new EventEmitter();
-
   constructor(private CartService: ShoppingCartService) {}
 
   addToCart(product: any) {
     this.CartService.addToCart(product);
   }
 
-  getQuantity() {
-    return this.shoppingCart;
-  }
-
-  btnClicked(): void {
-    this.clicked.emit();
+  amountIncrease() {
+    this.shoppingCart++;
   }
 }
