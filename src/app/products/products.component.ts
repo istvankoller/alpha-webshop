@@ -3,6 +3,7 @@ import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { getLocaleExtraDayPeriods } from '@angular/common';
+import { getCartsItems } from '../services/firebase-operations';
 
 @Component({
   selector: 'app-products',
@@ -32,6 +33,15 @@ export class ProductsComponent {
       });
     });
     shoppingCarts.getCart().then((data) => {
+      if (data) {
+        this.cart = data;
+      } else {
+        this.cart = {};
+      }
+    });
+  }
+  updateCart(): void {
+    getCartsItems().then((data) => {
       if (data) {
         this.cart = data;
       } else {
