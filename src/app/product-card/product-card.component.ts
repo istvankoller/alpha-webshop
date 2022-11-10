@@ -17,5 +17,7 @@ export class ProductCardComponent {
     this.CartService.addToCart(product);
   }
 
-  getQuantity() {}
+  getQuantity() {
+    return this.shoppingCart;
+  }
 }

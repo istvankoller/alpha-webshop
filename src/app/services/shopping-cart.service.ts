@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createCartId, addProductToCart } from './firebase-operations';
+import { getCartsItems } from './firebase-operations';
 
 @Injectable({
   providedIn: 'root',
@@ -18,5 +19,9 @@ export class ShoppingCartService {
   async addToCart(product: any) {
     let cartId = await this.getOrCreateCart();
     addProductToCart(product, cartId);
+  }
+
+  getCart() {
+    return getCartsItems();
   }
 }

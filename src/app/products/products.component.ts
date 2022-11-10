@@ -14,7 +14,7 @@ export class ProductsComponent {
   filteredProducts: any = [];
 
   category: any;
-  cart: any;
+  cart: any = {};
 
   constructor(
     route: ActivatedRoute,
@@ -31,7 +31,8 @@ export class ProductsComponent {
           : this.products;
       });
     });
+    shoppingCarts.getCart().then((data) => {
+      this.cart = data;
+    });
   }
-
-  async ngOnInit() {}
 }

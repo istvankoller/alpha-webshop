@@ -111,11 +111,17 @@ export async function addProductToCart(product: any, cartId: any) {
   }
 }
 
-export async function getCart() {
-  const querySnapshot = await getDocs(collection(db, 'shoppint-carts'));
-  querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
-  });
-}
+export async function getCartsItems(): Promise<any> {
+  let cartId = localStorage.getItem('cartId');
+  if (cartId) {
+    const docRef = doc(db, 'shopping-carts', cartId);
+    const docSnap = await getDoc(docRef);
 
-getCart();
+    if (docSnap.exists()) {
+      return docSnap.data();
+    } else {
+      // doc.data() will be undefined in this case
+      console.log('No such document!');
+    }
+  }
+}
