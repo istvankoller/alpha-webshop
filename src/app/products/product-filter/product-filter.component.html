@@ -3,12 +3,12 @@
     <a
       class="list-group-item list-group-item-action"
       [class.active]="!category"
-      routerLink="/"
+      routerLink="/webshop"
       >All Categories</a
     >
     <a
       *ngFor="let c of categories$ | async"
-      routerLink="/"
+      routerLink="/webshop"
       [queryParams]="{ category: c.name }"
       class="list-group-item list-group-item-action"
       [class.active]="category === c.name"

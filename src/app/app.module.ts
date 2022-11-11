@@ -62,8 +62,9 @@ import { ShoppingCartService } from './services/shopping-cart.service';
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
     RouterModule.forRoot([
-      { path: '', component: ProductsComponent },
-      { path: 'products', component: ProductsComponent },
+      { path: '', component: HomeComponent },
+      { path: 'webshop', component: ProductsComponent },
+      // { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       {
         path: 'check-out',
